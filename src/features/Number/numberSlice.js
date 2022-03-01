@@ -11,6 +11,9 @@ export const numberSlice = createSlice ({
         setNumber: (state, action) => {
             state.itens = action.payload
         },
+        setStarred: (state, action) => {
+            state.starred = action.payload
+        },
         add: (state, action) => {
             state.itens.push(action.payload)
         },
