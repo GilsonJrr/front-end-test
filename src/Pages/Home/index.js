@@ -6,7 +6,9 @@ import { setModalNumber, setModalMPrice, setModalSPrice } from '../../features/m
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button'
+import Modal from 'react-bootstrap/Modal'
 import AddnUpdateModal from './modal';
+import { DelModal } from './modal';
 import userimg from '../../img/user.png'
 import '../../App.css';
 
@@ -15,6 +17,10 @@ function Home() {
   const dispatch = useDispatch();
 
   const [addModal, setAddModal] = useState(false)
+  const [delModal, setDelModal] = useState(false)
+  const [delID, setDelId] = useState('')
+  const [delValue, setDelValue] = useState('')
+
   const [modalTitle, setModalTitle] = useState("''")
   const modalNumber = useSelector(state => state.ModalValues.ModalNumber)
   const modalMPrice = useSelector(state => state.ModalValues.ModalMPrice)
@@ -25,6 +31,8 @@ function Home() {
   const [number, setnumber] = useState('')
 
   const [user, setUser] = useState('Admin')
+  const [totalShow, setTotalShow] = useState(5)
+  const [seeAll, setSeeAll] = useState('See All')
 
   useEffect(()=>{
     dispatch(retrivedNumber())
@@ -34,9 +42,11 @@ function Home() {
     setnumber(event.target.value)
   }
 
-  function HandleDelete (id){
+  function HandleDelete (id,value){
 
-    dispatch(del({id: id}))
+    setDelModal(true)
+    setDelId(id)
+    setDelValue(value)
     
   }
 
@@ -82,13 +92,27 @@ function Home() {
     setAddModal(true)
   }
 
+  function HandleTotalShow(){
+    
+    if(seeAll == 'See All'){
+        setTotalShow(FilteredData.length)
+        setSeeAll('See Less')
+    }
+
+    if(seeAll == 'See Less'){
+        setTotalShow(8)
+        setSeeAll('See All')
+    }
+    
+  }
+
   const FilteredData = data.filter(a => a.value.includes(number))
 
   return (
     <div className="App">
 
       <div className='LogoDiv'>
-        <p1>Number Management</p1>
+        <p1>Telecom Carrier</p1>
         <div className='UserDiv'>
             <p2>Welcome, {user}</p2>
             <img src={userimg}/>
@@ -102,9 +126,12 @@ function Home() {
         </div>
         <Button variant="primary" className='Button' onClick={CallAdd}>Add Number</Button>
       </div>
-
-      <div className='TableWidth'>
-        <Table>
+    
+      <div className='Table'>
+        <div className='HeaderTable'>
+            <p1>Phone Numbers</p1>
+        </div>
+        <Table borderless>
             <thead>
                 <tr>
                   <th>Number</th>
@@ -114,7 +141,7 @@ function Home() {
                 </tr>
             </thead>
             <tbody>
-                {FilteredData.map((item) => {
+                {FilteredData.slice(0, totalShow).map((item) => {
                   return(
                     <tr>
                       <td>{item.value}</td>
@@ -122,21 +149,35 @@ function Home() {
                       <td>{item.currency} {item.setupPrice}</td>
                       <td>
                         <Button className='ButtonUpdate' variant="success" onClick={ ()=> HandleUpdate(item.id, item.value, item.monthyPrice, item.setupPrice ) }>Update</Button>{' '}
-                        <Button className='ButtonDelete' variant="danger" onClick={ ()=> HandleDelete(item.id) }>Delete</Button>
+                        <Button className='ButtonDelete' variant="danger" onClick={ ()=> HandleDelete(item.id, item.value) }>Delete</Button>
                       </td>
                     </tr>    
                   )
                 })}
             </tbody>
         </Table>
+        <div className='FooterTable'>
+            <p1>{FilteredData.length} Total phone Numbers</p1>
+            <p2 onClick={HandleTotalShow}>{seeAll}</p2>
+        </div>
       </div>
 
-      {addModal &&
-        <div className='DelModal'>
+      { addModal &&
+        <div className='AddnUpdateModal'>
             <AddnUpdateModal
                 setAddModal={setAddModal}
                 modalTitle={modalTitle}
                 HandleAdd={HandleAdd}
+            />
+        </div>
+      }
+      { delModal &&
+        <div className='AddnUpdateModal'>
+            <DelModal
+                setDelModal={setDelModal}
+                dispatch={dispatch}
+                id={delID}
+                value={delValue}
             />
         </div>
       }

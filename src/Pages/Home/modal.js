@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Button from 'react-bootstrap/Button'
 import { useDispatch, useSelector } from 'react-redux';
+import { del } from '../../features/Number/numberSlice'
 import { setModalNumber, setModalMPrice, setModalSPrice } from '../../features/modalSlice'
 import '../../App.css';
 
@@ -107,4 +108,27 @@ function AddnUpdateModal(props) {
   );
 }
 
-export default AddnUpdateModal; 
+export default AddnUpdateModal;
+
+export function DelModal(props){
+
+    function HandleDelete (){
+        props.dispatch(del({id: props.id}))
+        props.setDelModal(false)
+    }
+
+    return(
+        <div>
+            <Modal.Dialog>
+                <Modal.Header>
+                    <Modal.Title>Are you sure you what to delete this number {props.value} ?</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() =>props.setDelModal(false)}>Close</Button>
+                    <Button variant="danger" onClick={HandleDelete}>Delete</Button>
+                </Modal.Footer>
+            </Modal.Dialog>
+        </div>
+    )
+}

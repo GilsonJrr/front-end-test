@@ -9,7 +9,7 @@
     },
     {
       "id": 2,
-      "value": "+55 84 48736-4321",
+      "value": "+55 84 48736-1039",
       "monthyPrice": "0.04",
       "setupPrice": "4.80",
       "currency": "U$"
@@ -23,14 +23,14 @@
     },
     {
       "id": 4,
-      "value": "+55 84 36473-4321",
+      "value": "+55 84 36473-5830",
       "monthyPrice": "0.04",
       "setupPrice": "1.90",
       "currency": "U$"
     },
     {
       "id": 5,
-      "value": "+55 84 38494-4321",
+      "value": "+55 84 38494-0361",
       "monthyPrice": "0.08",
       "setupPrice": "4.10",
       "currency": "U$"
@@ -44,7 +44,7 @@
     },
     {
       "id": 7,
-      "value": "+55 84 57557-4321",
+      "value": "+55 84 57557-0321",
       "monthyPrice": "0.05",
       "setupPrice": "1.80",
       "currency": "U$"
@@ -58,16 +58,86 @@
     },
     {
       "id": 9,
-      "value": "+55 84 02945-4321",
+      "value": "+55 84 02945-4441",
       "monthyPrice": "0.08",
       "setupPrice": "2.10",
       "currency": "U$"
     },
     {
       "id": 10,
-      "value": "+55 84 38454-4321",
+      "value": "+55 84 32254-7483",
+      "monthyPrice": "0.04",
+      "setupPrice": "3.24",
+      "currency": "U$"
+    },
+    {
+      "id": 11,
+      "value": "+55 84 832246-4310",
+      "monthyPrice": "0.03",
+      "setupPrice": "3.85",
+      "currency": "U$"
+    },
+    {
+      "id": 12,
+      "value": "+55 84 10436-9473",
+      "monthyPrice": "0.04",
+      "setupPrice": "4.85",
+      "currency": "U$"
+    },
+    {
+      "id": 13,
+      "value": "+55 84 09498-4331",
+      "monthyPrice": "0.03",
+      "setupPrice": "2.30",
+      "currency": "U$"
+    },
+    {
+      "id": 14,
+      "value": "+55 84 12373-1938",
+      "monthyPrice": "0.04",
+      "setupPrice": "1.90",
+      "currency": "U$"
+    },
+    {
+      "id": 15,
+      "value": "+55 84 04954-4321",
+      "monthyPrice": "0.03",
+      "setupPrice": "4.10",
+      "currency": "U$"
+    },
+    {
+      "id": 16,
+      "value": "+55 84 20102-4321",
+      "monthyPrice": "0.09",
+      "setupPrice": "3.80",
+      "currency": "U$"
+    },
+    {
+      "id": 17,
+      "value": "+55 84 10457-4321",
+      "monthyPrice": "0.09",
+      "setupPrice": "1.80",
+      "currency": "U$"
+    },
+    {
+      "id": 18,
+      "value": "+55 84 48375-4321",
+      "monthyPrice": "0.08",
+      "setupPrice": "2.80",
+      "currency": "U$"
+    },
+    {
+      "id": 19,
+      "value": "+55 84 12945-4321",
+      "monthyPrice": "0.04",
+      "setupPrice": "2.10",
+      "currency": "U$"
+    },
+    {
+      "id": 20,
+      "value": "+55 84 38424-4321",
       "monthyPrice": "0.02",
-      "setupPrice": "3.20",
+      "setupPrice": "2.20",
       "currency": "U$"
     }
   ]
