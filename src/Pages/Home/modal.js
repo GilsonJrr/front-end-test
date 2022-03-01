@@ -43,7 +43,7 @@ function AddnUpdateModal(props) {
                         value={props.modalNumber}  
                         onChange={(event)=> props.setModalNumber(event.target.value)} 
                         required
-                        type="number"
+                        // type="number"
                         placeholder="First name"
                         defaultValue="+55 84 88888-8888"
                     />
