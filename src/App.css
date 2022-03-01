@@ -200,3 +200,8 @@
   color: var(--FontColor);
   font-weight: bold;
 }
+
+.Spinner{
+  margin-top: 100px;
+  margin-bottom: 100px;
+}

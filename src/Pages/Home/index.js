@@ -6,7 +6,7 @@ import { setModalNumber, setModalMPrice, setModalSPrice } from '../../features/m
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button'
-import Modal from 'react-bootstrap/Modal'
+import Spinner from 'react-bootstrap/Spinner'
 import AddnUpdateModal from './modal';
 import { DelModal } from './modal';
 import userimg from '../../img/user.png'
@@ -35,7 +35,9 @@ function Home() {
   const [seeAll, setSeeAll] = useState('See All')
 
   useEffect(()=>{
-    dispatch(retrivedNumber())
+    setTimeout(() => {
+        dispatch(retrivedNumber())
+    }, 2000);
   },[])
 
   function HandleNumber (event){
@@ -131,6 +133,7 @@ function Home() {
         <div className='HeaderTable'>
             <p1>Phone Numbers</p1>
         </div>
+        { FilteredData.length >= 1 ?
         <Table borderless>
             <thead>
                 <tr>
@@ -155,7 +158,11 @@ function Home() {
                   )
                 })}
             </tbody>
-        </Table>
+        </Table> :
+            <div className='Spinner'> 
+                <Spinner animation="border" variant="light" />
+            </div>    
+        }
         <div className='FooterTable'>
             <p1>{FilteredData.length} Total phone Numbers</p1>
             <p2 onClick={HandleTotalShow}>{seeAll}</p2>
