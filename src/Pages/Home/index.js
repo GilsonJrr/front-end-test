@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import * as Icon from 'react-feather';
 import { useDispatch, useSelector } from 'react-redux';
 import { retrivedNumber, del, add, update } from '../../features/Number/numberSlice'
+import { setModalNumber, setModalMPrice, setModalSPrice } from '../../features/modalSlice'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button'
@@ -14,9 +15,9 @@ function Home() {
 
   const [addModal, setAddModal] = useState(false)
   const [modalTitle, setModalTitle] = useState("''")
-  const [modalNumber, setModalNumber] = useState("")
-  const [modalMPrice, setModalMPrice] = useState("")
-  const [modalSPrice, setModalSPrice] = useState("")
+  const modalNumber = useSelector(state => state.ModalValues.ModalNumber)
+  const modalMPrice = useSelector(state => state.ModalValues.ModalMPrice)
+  const modalSPrice = useSelector(state => state.ModalValues.ModalSPrice)
   const [modalId, setModalId] = useState("")
 
   const data = useSelector(state => state.number.itens)
@@ -39,10 +40,6 @@ function Home() {
   function CallAdd(){
     setModalTitle('Add')
     setAddModal(true)
-
-    setModalNumber('')
-    setModalMPrice('')
-    setModalSPrice('')
   }
 
   function HandleAdd (){
@@ -66,10 +63,6 @@ function Home() {
         currency: "U$",
       }))
     }
-  
-    setModalNumber('')
-    setModalMPrice('')
-    setModalSPrice('')
 
     setAddModal(false)
 
@@ -79,9 +72,9 @@ function Home() {
     setModalTitle('Update')
 
     setModalId(id)
-    setModalNumber(value)
-    setModalMPrice(monthyPrice)
-    setModalSPrice(setupPrice)
+    dispatch(setModalNumber(value))
+    dispatch(setModalMPrice(monthyPrice))
+    dispatch(setModalSPrice(setupPrice))
 
     setAddModal(true)
   }
@@ -136,12 +129,6 @@ function Home() {
             <AddnUpdateModal
                 setAddModal={setAddModal}
                 modalTitle={modalTitle}
-                modalNumber={modalNumber}
-                setModalNumber={setModalNumber}
-                modalMPrice={modalMPrice}
-                setModalMPrice={setModalMPrice}
-                modalSPrice={modalSPrice}
-                setModalSPrice={setModalSPrice}
                 HandleAdd={HandleAdd}
             />
         </div>

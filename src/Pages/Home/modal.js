@@ -1,13 +1,24 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Button from 'react-bootstrap/Button'
-import InputGroup from 'react-bootstrap/InputGroup'
+import { useDispatch, useSelector } from 'react-redux';
+import { setModalNumber, setModalMPrice, setModalSPrice } from '../../features/modalSlice'
 
 function AddnUpdateModal(props) {
+
+    useEffect(()=>{
+        if(props.modalTitle == 'Add'){
+            dispatch(setModalNumber(''))
+            dispatch(setModalMPrice(''))
+            dispatch(setModalSPrice(''))
+        }
+    },[])
+
+    const dispatch = useDispatch();
 
     const [validated, setValidated] = useState(false);
 
@@ -40,8 +51,8 @@ function AddnUpdateModal(props) {
                 
                 <FloatingLabel label="Number" className="mb-3">
                     <Form.Control 
-                        value={props.modalNumber}  
-                        onChange={(event)=> props.setModalNumber(event.target.value)} 
+                        value={useSelector(state => state.ModalValues.ModalNumber)}  
+                        onChange={(event)=> dispatch(setModalNumber(event.target.value))} 
                         required
                         // type="number"
                         placeholder="First name"
@@ -56,7 +67,13 @@ function AddnUpdateModal(props) {
                 <Row>
                     <Col>
                     <FloatingLabel controlId="floatingInputGrid" label="Monthy Price">
-                        <Form.Control required type="number" value={props.modalMPrice} placeholder='0.08' onChange={(event)=> props.setModalMPrice(event.target.value)} />
+                        <Form.Control 
+                            required  
+                            type="number" 
+                            value={useSelector(state => state.ModalValues.ModalMPrice)} 
+                            placeholder='0.08' 
+                            onChange={(event)=> dispatch(setModalMPrice(event.target.value))} 
+                        />
                         <Form.Control.Feedback type="invalid">
                             Please provide a valid Monthy Price.
                         </Form.Control.Feedback>
@@ -64,7 +81,13 @@ function AddnUpdateModal(props) {
                     </Col>
                     <Col>
                     <FloatingLabel controlId="floatingInputGrid" label="Setup Price">
-                        <Form.Control required type="number" value={props.modalSPrice} placeholder='8.88' onChange={(event)=> props.setModalSPrice(event.target.value)} />
+                        <Form.Control 
+                            required 
+                            type="number" 
+                            value={useSelector(state => state.ModalValues.ModalSPrice)} 
+                            placeholder='8.88' 
+                            onChange={(event)=> dispatch(setModalSPrice(event.target.value))} 
+                        />
                         <Form.Control.Feedback type="invalid">
                             Please provide a valid Setup Price.
                         </Form.Control.Feedback>
