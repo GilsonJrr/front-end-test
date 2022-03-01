@@ -7,6 +7,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Button from 'react-bootstrap/Button'
 import { useDispatch, useSelector } from 'react-redux';
 import { setModalNumber, setModalMPrice, setModalSPrice } from '../../features/modalSlice'
+import '../../App.css';
 
 function AddnUpdateModal(props) {
 
@@ -40,7 +41,7 @@ function AddnUpdateModal(props) {
     }
 
   return (
-    <Modal.Dialog>
+    <Modal.Dialog className='ModalStyle'>
 
         <Modal.Header closeButton onClick={()=> props.setAddModal(false)}>
             <Modal.Title>{props.modalTitle} Number</Modal.Title>
@@ -98,7 +99,7 @@ function AddnUpdateModal(props) {
                 <Row className="mb-3">
                 </Row>
                 
-                <Button type="submit" >Save changes</Button>
+                <Button type="submit">Save changes</Button>
             </Form>
         </Modal.Body>
 

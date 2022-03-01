@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button'
 import AddnUpdateModal from './modal';
+import userimg from '../../img/user.png'
 import '../../App.css';
 
 function Home() {
@@ -22,6 +23,8 @@ function Home() {
 
   const data = useSelector(state => state.number.itens)
   const [number, setnumber] = useState('')
+
+  const [user, setUser] = useState('Admin')
 
   useEffect(()=>{
     dispatch(retrivedNumber())
@@ -86,6 +89,10 @@ function Home() {
 
       <div className='LogoDiv'>
         <p1>Number Management</p1>
+        <div className='UserDiv'>
+            <p2>Welcome, {user}</p2>
+            <img src={userimg}/>
+        </div>
       </div>
 
       <div className='Filter'>
@@ -97,7 +104,7 @@ function Home() {
       </div>
 
       <div className='TableWidth'>
-        <Table hover>
+        <Table>
             <thead>
                 <tr>
                   <th>Number</th>
@@ -114,8 +121,8 @@ function Home() {
                       <td>{item.currency} {item.monthyPrice}</td>
                       <td>{item.currency} {item.setupPrice}</td>
                       <td>
-                        <Button variant="success" onClick={ ()=> HandleUpdate(item.id, item.value, item.monthyPrice, item.setupPrice ) }>Update</Button>{' '}
-                        <Button variant="danger" onClick={ ()=> HandleDelete(item.id) }>Delete</Button>
+                        <Button className='ButtonUpdate' variant="success" onClick={ ()=> HandleUpdate(item.id, item.value, item.monthyPrice, item.setupPrice ) }>Update</Button>{' '}
+                        <Button className='ButtonDelete' variant="danger" onClick={ ()=> HandleDelete(item.id) }>Delete</Button>
                       </td>
                     </tr>    
                   )
